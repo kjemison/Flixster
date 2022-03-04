@@ -6,9 +6,11 @@ import org.json.JSONArray
 data class Movie(val title: String,
                  val movieId: Int,
                  private val posterPath: String,
+                 private val backdropPath: String,
                  val overview: String) {
 
     val posterImageUrl = "https://image.tmdb.org/t/p/w342/$posterPath"
+    val backdropImageUrl = "https://image.tmdb.org/t/p/w342/$backdropPath"
 
     companion object {
 
@@ -22,7 +24,8 @@ data class Movie(val title: String,
                 val movieJson = movieJsonArray.getJSONObject(i)
                 movies.add(Movie(movieJson.getString("title"),
                                  movieJson.getInt("id"),
-                                 movieJson.getString("poster_path"),
+                                 movieJson.getString("posterPath"),
+                                 movieJson.getString("backdropPath"),
                                  movieJson.getString("overview"))
                 )
             }
